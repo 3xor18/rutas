@@ -1,0 +1,57 @@
+Suponiendo que la tabla compra se almacena el numero de la factura, luego se registra los productos en la tabla detalle con el id de compra junto con el id de categoria. ("a mi parecer, esta mal diseñada la base de datos, ya que la tabla compra solo deberia contener el id,el nombre o cedula del cliente y la fecha, la tabla detalle de compra deberia contener el id, id de compra, codigo de producto, cantidad de producto. la tabla producto debera contener el id, el nombre, descripcion, foto, y el precio del producto. De esta forma al incluir un registro en la tabla detalle de compra se busca el precio del producto y se obtiene el precio... Una vez mas, es a mi parecer, de todos modos lo realize con su base de datos ya que es para la prueba)
+
+//en el controlador de compra 
+$Compra=App\compras::all();
+
+// En la vista
+1-seleccion de todas las compras con sus detalles(asumiendo q nos manden el objeto compra desde el controlador)
+foreach ($Compra as $Compras) {
+
+//tomamos el id de compra seleccionada para posterior consulta de sus detalles
+        $Id_Compra=$Compras->Id;
+
+//seleccionamos los detalles de la compra
+	$Detalle_Compra=App\detalle_compras::where('compra_id',$Id_Compra)->all();
+//como obtenemos un posible array por que puede existir varios registros de producto x factura realizamos un bucle anidado para recorrer el nuevo array
+	foreach ($Compra as $Compras) {
+
+//tomamos el id de categiria para filtrar
+	$Id_Categoria=$Detalle_Compra->Categoria_id;
+
+//buscamos el nombre de la categoria en la tabla categoria filtrando x el registro de categoria_id, asumiendo que solo se guarde 1 registro en la tabla categoria x cada registro de detalle compra
+	$Nombre_Categoria=App\categorias::where('Id',$Categoria_id)->value('Nombre');
+
+//como me mandaron a consultar, supongo que muestro por pantalla nada mas:
+	{{Compra:$Compras->Id}}
+	{{Cantidad:$Compras->Cantidad}}
+	{{Producto:$Compras->Producto}}
+	{{Nombre:$Detalle_Compra->Nombre}}
+	{{Precio:$Detalle_Compra->Precio}}
+	{{Categoria:$Nombre_Categoria}}
+
+}
+}
+
+
+//*-----------------  Ordenar Por Categoria ------*/////
+
+////////////////////////////////////////////////////////////////////
+//en el controlador de compra 
+$Compra=App\compras::all();
+
+// En la vista
+1-seleccion de todas las compras con sus detalles(asumiendo q nos manden el objeto compra desde el controlador)
+foreach ($Compra as $Compras) {
+
+//tomamos el id de compra seleccionada para posterior seleccion y suma en la tabla detalle_compra
+        $Id_Compra=$Compras->Id;
+
+//seleccionamos los registros que concuerden con el id de compra y los sumamos
+	$monto_compra=App\detalle_compras::where('compra_id',$Id_compra)->value(SUM('Precio'));
+//Mostramos el total y el id de compra
+{{Compra:$Id_compra}}
+{{Monto:$monto_compra}}
+	
+}
+
+
