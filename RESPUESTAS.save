@@ -1,0 +1,31 @@
+
+
+//////////////////////////////////////////
+Herencia es cuando utilizamos funciones o propiedades de objetos padres en objetos hijos, como por ejemplo la clase padre es un ser humano
+y la clase hijo puede ser una persona asiatica, africana, europea, latina, todas ellas heredan cualidades y funciones similares. Si crearamos
+una nueva persona, le pasariamos las cualidades del objeto padre como 2 piernas, 2 brazos, etc (la herencia es mejor en proyectos pequeños, pero a lo largo del tiempo hara mas dificil la mantebilidad del mismo)
+
+la Composicion es cuando tenemos una isntancia de una clase que contiene otra instancia de otras clases que implementan las funciones deseadas,
+en el ejemplo de los seres humanos, si quisieras hacer un ser humano nuevo pero con 3 piernas, con mitad de cuerpo de asiatico y mitad de afroamericano no podria con herencia ya que solo podria utilziar las cualidades definidad en la clase padre, pero con composicion mediante el juego de contruccion y destruccion podriamos hacer las cualidades y funciones que desearamos ya podriamos moldear o crear funciones especificas que necesitaramos. (esto se recomienda en proyectos grandes, es mayor trabajo, pero hace que la sostenibilidad del codigo sea mas facil)
+
+/////////////////////////////////////////////////
+
+MVC laravel
+
+Laravel mediante las rutas (routes/web) procedemos a llamar un controlador(donde estan los metodos) y este a su vez llama a un modelo (es la tabla de la bd) que a su vez envia los datos al controlador para procesarlos y este a su vez envia los datos a la vista (view)
+
+//////////////////////////////////////////////
+
+Active Record: No me gusta mentir, podria googlearlo y decirle un resumen, pero prefiero que me contraten x lo que se o no se con la verdad, a que me contraten x mentir y quedar como mentiroso y hacerlos perder tiempo
+
+
+///////////////////////////////////////////////
+Controlador
+ php artisan make:controller nombreDelControlador (sin metodos)
+php artisan make:controlle nombreDelControlador --resource (nos crea todos los metodos)
+
+Seeder
+php artisan migrate:refresh --seed (todos los seeder)
+php artisan db:seed --class=UsersTable (alguno en especifico)
+
+Metodo Find le pasamos un parametro para ubicar un unico registro, el metodo all nos trae todo
